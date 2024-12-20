@@ -39,7 +39,7 @@ class SysCommandController extends Controller
 
     public function commit () {
 
-        `/bin/sh /opt/gcs/scripts/srkgenAst`;
+        `/bin/sh /opt/sark/scripts/srkgenAst`;
          return response()->json(['message' => 'System Commit issued'],200);
 
     } 

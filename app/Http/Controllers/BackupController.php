@@ -21,7 +21,7 @@ class BackupController extends Controller
     public function index () {
 
         $bkup = array();
-    	if ($handle = opendir('/opt/gcs/bkup')) {
+    	if ($handle = opendir('/opt/sark/bkup')) {
             while (false !== ($entry = readdir($handle))) {
                 if ($entry != '.' && $entry != '..') {
                     if (preg_match (' /^sarkbak\.\d+\.zip$/ ', $entry)) {
@@ -40,7 +40,7 @@ class BackupController extends Controller
         foreach ($bkup as $file ) {
             preg_match( '/\.(\d+).zip$/',$file,$matches);       
             $rdate = date('D d M H:i:s Y', $matches[1]);
-            $fsize = filesize("/opt/gcs/bkup/".$file);
+            $fsize = filesize("/opt/sark/bkup/".$file);
             $backups[$file]["filesize"] = $fsize;
             $backups[$file]["date"] = $rdate;                
         }
@@ -90,7 +90,7 @@ class BackupController extends Controller
 
         $fpath = $request->uploadzip->storeAs('bkups', $request->uploadzip->getClientOriginalName());
         $fullpath = storage_path() . "/app/" . $fpath;
-        shell_exec("/bin/mv $fullpath /opt/gcs/bkup");
+        shell_exec("/bin/mv $fullpath /opt/sark/bkup");
         return Response::json(['Uploaded ' . $fpath],200);
 
     }
@@ -130,7 +130,7 @@ class BackupController extends Controller
     		return response()->json($validator->errors(),422);
     	}		
 
-		if (!file_exists("/opt/gcs/bkup/$backup")) {
+		if (!file_exists("/opt/sark/bkup/$backup")) {
             return Response::json(['Error' => "backup file not found"],404);
         }   
 
@@ -152,11 +152,11 @@ class BackupController extends Controller
 
 // Don't allow deletion of default tenant
 
-        if (!file_exists("/opt/gcs/bkup/$backup")) {
+        if (!file_exists("/opt/sark/bkup/$backup")) {
            return Response::json(['Error' => "$backup not found in backup set"],404); 
         }
 
-        shell_exec("/bin/rm -r /opt/gcs/bkup/$backup");
+        shell_exec("/bin/rm -r /opt/sark/bkup/$backup");
 
         return response()->json(null, 204);
     }
