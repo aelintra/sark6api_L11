@@ -118,8 +118,8 @@ class CosCloseController extends Controller
 
 
 /**
- * Delete  Agent instance
- * @param  Agent
+ * Delete  Cos instance
+ * @param  Cos
  * @return 204
  */
     public function delete(CosOpen $cosclose) {

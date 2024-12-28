@@ -115,8 +115,8 @@ class DayTimerController extends Controller
 
 
 /**
- * Delete  Agent instance
- * @param  Agent
+ * Delete  Timer instance
+ * @param  Timer
  * @return 204
  */
     public function delete(DayTimer $daytimer) {
