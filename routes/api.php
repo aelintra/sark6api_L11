@@ -293,13 +293,10 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::put('trunks/{trunk}', [TrunkController::class, 'update']);
         Route::delete('trunks/{trunk}', [TrunkController::class, 'delete']);
     }
-    else 
-    {
-        return response()->json(['message' => 'Not Authorised for this request'],409)->send();
-    }
+
 });
 
 Route::fallback(function(){
     return response()->json([
-        'message' => 'Page Not Found'], 404);
+        'message' => 'Unauthorised/Page Not Found'], 404);
 });
