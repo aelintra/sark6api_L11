@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-//use App\Models\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Validator;
 
@@ -41,12 +41,12 @@ class AuthController extends Controller
         ]);
 
         if($user->save()){
-//        $tokenResult = $user->createToken('Personal Access Token');
-//        $token = $tokenResult->plainTextToken;
+        $tokenResult = $user->createToken('Personal Access Token');
+        $token = $tokenResult->plainTextToken;
 
             return response()->json([
             'message' => 'Created new user ' . $request->email . "!",
-//            'accessToken'=> $token,
+            'accessToken'=> $token,
             ],201);
         }
         else{
