@@ -41,7 +41,7 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::get('logout', [AuthController::class, 'logout']);
-        Route::get('myuser', [AuthController::class, 'user']);
+        Route::get('whoami', [AuthController::class, 'user']);
     });  
 /**
  *  Only admins can create.delete and view users

@@ -19,8 +19,8 @@ class AuthController extends Controller
     * @param  [string] password_confirmation
     * @return [string] message
     */
-    public function register(Request $request)
-    {
+    public function register(Request $request) {
+
         $request->validate([
             'name' => 'required|string',
             'email'=>'required|email|unique:users',
@@ -41,8 +41,8 @@ class AuthController extends Controller
         ]);
 
         if($user->save()){
-        $tokenResult = $user->createToken('Personal Access Token');
-        $token = $tokenResult->plainTextToken;
+            $tokenResult = $user->createToken('Personal Access Token');
+            $token = $tokenResult->plainTextToken;
 
             return response()->json([
             'message' => 'Created new user ' . $request->email . "!",
@@ -62,8 +62,8 @@ class AuthController extends Controller
     * @param  [boolean] remember_me
     */
 
-    public function login(Request $request)
-    {
+    public function login(Request $request) {
+
         $request->validate([
         'email' => 'required|string|email',
         'password' => 'required|string',
@@ -73,8 +73,7 @@ class AuthController extends Controller
     
 
         $credentials = request(['email','password']);
-        if(!Auth::attempt($credentials))
-        {
+        if(!Auth::attempt($credentials)) {
             return response()->json([
                 'message' => 'Unauthorized'
             ],401);
@@ -101,62 +100,62 @@ class AuthController extends Controller
     }
 
     /* 
-    * @return Index of user(s)
-    */
+     * @return Index of user(s)
+     */
     public function index () {
    
         return user::orderBy('id','asc')->get();
     }
 
     /* 
-    * @return user by id
-    */
+     * @return user by id
+     */
     public function userbyId ($id) {
 
         return user::where('id',$id)->get();
     }    
 
     /* 
-    * @return user by email
-    */
+     * @return user by email
+     */
     public function userByEmail ($email) {
 
         return user::where('email',$email)->get();
     }
     
     /* 
-    * @return user by name
-    */
+     * @return user by name
+     */
     public function userByName ($name) {
 
              return user::where('name',$name)->get();
-         }   
+    }   
 
     /* 
-    * @return user by email
-    */
+     * @return user by email
+     */
     public function userByEndpoint ($endpoint) {
 
              return user::where('endpoint',$endpoint)->get();
          }   
 
     /**
-    * Get the authenticated User
-    *
-    * @return [json] user object
-    */
-    public function user(Request $request)
-    {
+     * Get the authenticated User
+     *
+     * @return [json] user object
+     */
+    public function user(Request $request) {
+
         return response()->json(auth('sanctum')->user());
     }
 
     /**
-    * Logout user (Revoke the token)
-    *
-    * @return [string] message
-    */
-    public function logout(Request $request)
-    {
+     * Logout user (Revoke the token)
+     *
+     * @return [string] message
+     */
+    public function logout(Request $request) {
+
         $request->user()->tokens()->delete();
 
         return response()->json([
@@ -166,12 +165,11 @@ class AuthController extends Controller
     }
 
     /**
-    * delete user by id (and Revoke the token)
-    *
-    * @return [string] message
-    */
-    public function delete($id)
-    {
+     * delete user by id (and Revoke the token)
+     *
+     * @return [string] message
+     */
+    public function delete($id) {
         $user = User::find($id);
         if (!$user) {
             return response()->json([
@@ -188,6 +186,29 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => "Successfully deleted user $id"
+        ]);
+
+    } 
+    
+    /**
+     * revoke user token by id
+     *
+     * @return [string] message
+     */
+    public function revoke($id) {
+
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json([
+                'message' => "User $id not found"],404);  
+        }
+    /**
+     * Delete any tokens
+     */
+        $user->tokens()->delete();
+
+        return response()->json([
+            'message' => "Successfully deleted tokens for user $id"
         ]);
 
     }    
