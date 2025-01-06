@@ -29,51 +29,51 @@ use App\Http\Controllers\SysglobalController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\TrunkController;
 
-$myabilities = "*";
-
-
 
 Route::group(['prefix' => 'auth'], function () {
 /**
  *  Only login needs no privileges
- */    
+ */
     Route::post('login', [AuthController::class, 'login']);
-
+/**
+ * logout and whoami are available to all logged in users
+ */
     Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::get('logout', [AuthController::class, 'logout']);
         Route::get('whoami', [AuthController::class, 'user']);
-    });  
+    });
+
+    Route::group(['middleware' => 'auth:sanctum'], function() {
 /**
- *  Only admins can create.delete and view users
+ * Stuff which has to be logged in but does not need admin privileges
+ */
+    Route::put('astamis/DBput/srktwin/{key}/{value}', [AstAmiController::class, 'dbput']);
+    Route::delete('astamis/DBdel/srktwin/{key}', [AstAmiController::class, 'dbdel']);
+});
+
+/**
+ *  Only admins can create,delete and view users
  */
     if (get_token_abilities()) {
         Route::post('register', [AuthController::class, 'register']);
         Route::get('users', [AuthController::class, 'index']);
-        Route::get('users/whoami', [AuthController::class, 'user']);
-        Route::get('users/id/{id}', [AuthController::class, 'userById']);
+//        Route::get('users/whoami', [AuthController::class, 'user']);
         Route::get('users/mail/{email}', [AuthController::class, 'userByEmail']);
         Route::get('users/name/{name}', [AuthController::class, 'userByName']);
         Route::get('users/endpoint/{endpoint}', [AuthController::class, 'userByEndpoint']);
-        Route::delete('delete/{id}', [AuthController::class, 'delete']);
-    } 
+        Route::get('users/endpoint/{endpoint}', [AuthController::class, 'userByEndpoint']);
+        Route::delete('users/revoke/{id}', [AuthController::class, 'revoke']);
+        Route::delete('users/{id}', [AuthController::class, 'delete']);
+    }
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
 /**
- * Stuff which has to be logged in but does not need admin privileges
- */
-
-    Route::put('astamis/DBput/srktwin/{key}/{value}', [AstAmiController::class, 'dbput']);
-    Route::delete('astamis/DBdel/srktwin/{key}', [AstAmiController::class, 'dbdel']);
-});    
-
-Route::group(['middleware' => 'auth:sanctum'], function() {  
-/**
- * Everything in this group requires admin privileges.  
+ * Everything in this group requires admin privileges.
  * Sanctum check-abilities does not seem to work and I am out
- * of time so I hacked a helper to check the 
+ * of time so I hacked a helper to check the
  * PAT table for admin priveleges.  Easily removed if I ever figure out how to get Sanctum to
- * do this for me.  
+ * do this for me.
  */
     if (get_token_abilities()) {
 /**
@@ -91,7 +91,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::get('astamis', [AstAmiController::class, 'index']);
         Route::get('astamis/CoreSettings', [AstAmiController::class, 'coresettings']);
         Route::get('astamis/CoreStatus', [AstAmiController::class, 'corestatus']);
-        
+
         Route::get('astamis/ExtensionState/{id}{context?}', [AstAmiController::class, 'extensionstate']);
         Route::get('astamis/MailboxCount/{id}', [AstAmiController::class, 'mailboxcount']);
         Route::get('astamis/MailboxStatus/{id}', [AstAmiController::class, 'mailboxstatus']);
@@ -226,7 +226,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::delete('ivrs/{ivr}', [IvrController::class, 'delete']);
 
     /**
-     * CDR Log  
+     * CDR Log
      */
         Route::get('logs', [LogController::class, 'index']);
         Route::get('logs/cdrs{limit}', [LogController::class, 'showcdr']);
@@ -251,7 +251,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::delete('snapshots/{snapshot}', [SnapShotController::class, 'delete']);
 
     /**
-     * Routes 
+     * Routes
      */
         Route::get('routes', [RouteController::class, 'index']);
         Route::get('routes/{route}', [RouteController::class, 'show']);
@@ -276,7 +276,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::put('sysglobals', [SysglobalController::class, 'update']);
 
     /**
-     *  Tenants 
+     *  Tenants
      */
         Route::get('tenants', [TenantController::class, 'index']);
         Route::get('tenants/{tenant}', [TenantController::class, 'show']);

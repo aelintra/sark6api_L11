@@ -1,0 +1,4 @@
+# SARK API
+sark6api is a fairly vanilla OAS JSON API. It allows you to programmatically do (almost) anything you can do manually at the SARK V6 browser. Perhaps you have an idea for an extension to SARK, maybe you want to rewrite all or parts of the SARK browser and incorporate it into a package of your own. Perhaps you wish to integrate a click-to-call feature into your web page. Maybe you want to control a remote SARK from a management layer. All of these things are possible with the API.
+sark6api requires a SARK V6 instance running on focal or later. This is largely due to the requirement for PHP 7.2.5 or higher, which comes as standard on these releases. Only 64 bit architectures are supported for both X86 and ARM.
+The API uses the Laravel framework while the support code is written in a mix of standalone PHP, bash and C code.
