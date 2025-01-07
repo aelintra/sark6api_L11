@@ -15,7 +15,6 @@ As an <i>unauthorised</i> user, the ONLY API endpoint you can access is <i>login
 ##Login
 ####POST /auth/login
 
-
 Body
 ```
 'email' => 'email',
@@ -32,6 +31,15 @@ The existing Bearer Token is destroyed
 An authorised user who is also an admin may create a new user with a register request.  The returned details may be passed to the end-user either as a UID/PWD pair or as a bearer token.
 ####POST /auth/register
 
+Body
+```
+'name' => 'alpha_dash',
+'email' => 'email',
+'password' => 'alpha_dash',
+'role' => 'NULL|isAdmin',
+'endpoint' => 'NULL|integer'
+
+```	
 Returns 200 OK and a Bearer Token on success<br/>
 
 
