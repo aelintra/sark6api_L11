@@ -118,8 +118,8 @@ class CustomAppController extends Controller
 
 
 /**
- * Delete  Agent instance
- * @param  Agent
+ * Delete  app instance
+ * @param  app
  * @return 204
  */
     public function delete(CustomApp $customapp) {

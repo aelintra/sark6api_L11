@@ -46,7 +46,7 @@ class AgentController extends Controller
     }
 
 /**
- * Create a new queue instance
+ * Create a new Agent instance
  * 
  * @param  Request
  * @return New Did
