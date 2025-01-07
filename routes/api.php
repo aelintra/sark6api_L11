@@ -60,7 +60,6 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('users/mail/{email}', [AuthController::class, 'userByEmail']);
         Route::get('users/name/{name}', [AuthController::class, 'userByName']);
         Route::get('users/endpoint/{endpoint}', [AuthController::class, 'userByEndpoint']);
-        Route::get('users/endpoint/{endpoint}', [AuthController::class, 'userByEndpoint']);
         Route::delete('users/revoke/{id}', [AuthController::class, 'revoke']);
         Route::get('users/{id}', [AuthController::class, 'userById']);
         Route::delete('users/{id}', [AuthController::class, 'delete']);
