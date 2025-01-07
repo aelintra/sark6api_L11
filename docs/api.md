@@ -1,7 +1,5 @@
 #Overview
 
-![PonyCar](assets/images/PonyCar.jpeg)
-
 ##Methods
 
 sark65api uses the methods GET,POST,PUT,DELETE
