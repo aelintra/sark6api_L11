@@ -1,6 +1,6 @@
 # Authentication
 
-Before you can use the API you must be authenticated.  Sark65 API uses Laravel Sanctum, which is token based, a little like Github personal-access-tokens.   Before you can use the API you must have a Bearer Token. You may obtain a token in one of two ways:-
+Before you can use the API you must be authenticated.  Sark65 API uses Laravel Sanctum which, being token based, is a little like Github personal-access-tokens.   Before you can use the API you must have a Bearer Token. You may obtain a token in one of two ways:-
 
 * an administrator may issue you with a traditional UID/PWD.  When you authenticate yourself (i.e. login) with the correct credentials then you will be returned a "Bearer Token" which you must supply in the Auth Header for all subsequent calls to the API. 
 
