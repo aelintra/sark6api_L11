@@ -1,12 +1,12 @@
-# Authorization
+# Authentication
 
-Before you can use the API you must be authorised.  Sark65 API uses Laravel Sanctum, which is token based, a little like Github personal-access-tokens.   Before you can use the API you must have a Bearer Token. You may obtain a token in one of two ways:-
+Before you can use the API you must be authenticated.  Sark65 API uses Laravel Sanctum, which is token based, a little like Github personal-access-tokens.   Before you can use the API you must have a Bearer Token. You may obtain a token in one of two ways:-
 
-* an administrator may issue you with a traditional UID/PWD.  When you authorize yourself (i.e. login) with the correct credentials then you will be returned a "Bearer Token" which you must supply in the Auth Header for all subsequent calls to the API. 
+* an administrator may issue you with a traditional UID/PWD.  When you authenticate yourself (i.e. login) with the correct credentials then you will be returned a "Bearer Token" which you must supply in the Auth Header for all subsequent calls to the API. 
 
 * an administrator may issue you directly with a Bearer Token.  In these cases there is no requirement to login.   Instead you simply use the Bearer Token when you issue a request to the API.
 
-As an <i>unauthorised</i> user, the ONLY API endpoint you can access is <i>login</i>.   Unless, or until, you succesfully authorize yourself then you will have no other access.  It therefore follows that ALL other requests must be accompanied by a Bearer Token in the Auth Header.
+As an <i>unauthorised</i> user, the ONLY API endpoint you can access is <i>login</i>.   Unless, or until, you succesfully authenticate yourself then you will have no other access.  It therefore follows that ALL other requests must be accompanied by a Bearer Token in the Auth Header.
 
 ---
 
