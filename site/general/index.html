@@ -7,7 +7,7 @@
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
       
-        <meta name="author" content="CoCoKraft">
+        <meta name="author" content="KoKoKraft">
       
       
       
@@ -3650,7 +3650,7 @@
 </span><span id="__span-32-19"><a id="__codelineno-32-19" name="__codelineno-32-19" href="#__codelineno-32-19"></a>            &#39;ldaphost&#39; =&gt; &#39;string&#39;,
 </span><span id="__span-32-20"><a id="__codelineno-32-20" name="__codelineno-32-20" href="#__codelineno-32-20"></a>            &#39;ldapou&#39; =&gt; &#39;string&#39;,
 </span><span id="__span-32-21"><a id="__codelineno-32-21" name="__codelineno-32-21" href="#__codelineno-32-21"></a>            &#39;ldapuser&#39; =&gt; &#39;string&#39;,
-</span><span id="__span-32-22"><a id="__codelineno-32-22" name="__codelineno-32-22" href="#__codelineno-32-22"></a>            &#39;ldappass&#39; =&gt; &#39;sarkstring&#39;,
+</span><span id="__span-32-22"><a id="__codelineno-32-22" name="__codelineno-32-22" href="#__codelineno-32-22"></a>            &#39;ldappass&#39; =&gt; &#39;string&#39;,
 </span><span id="__span-32-23"><a id="__codelineno-32-23" name="__codelineno-32-23" href="#__codelineno-32-23"></a>            &#39;ldaptls&#39; =&gt; &#39;in:on,off&#39;,
 </span><span id="__span-32-24"><a id="__codelineno-32-24" name="__codelineno-32-24" href="#__codelineno-32-24"></a>            &#39;localarea&#39; =&gt; &#39;numeric|nullable&#39;,
 </span><span id="__span-32-25"><a id="__codelineno-32-25" name="__codelineno-32-25" href="#__codelineno-32-25"></a>            &#39;localdplan&#39; =&gt; [
@@ -3780,10 +3780,20 @@
 <h4 id="post-astamisoriginate">POST /astamis/originate<a class="headerlink" href="#post-astamisoriginate" title="Permanent link">&para;</a></h4>
 <p>originate a new bridge</p>
 <p><strong>Body:</strong></p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>target = &#39;required|integer&#39;;
-</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>caller = &#39;required|numeric&#39;;
-</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>context = &#39;required|alpha_dash&#39;
-</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>clid = &#39;required|numeric&#39;;
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>&#39;channel&#39; =&gt; &#39;required|string&#39;,
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>&#39;exten&#39; =&gt; &#39;required|string&#39;,
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>&#39;context&#39; =&gt; &#39;required|string&#39;,
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>&#39;priority&#39; =&gt; &#39;numeric&#39;,
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>&#39;application&#39; =&gt; &#39;string&#39;,
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>&#39;data&#39; =&gt; &#39;string&#39;,
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>&#39;timeout&#39; =&gt; &#39;numeric&#39;,
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a>&#39;callerid&#39; =&gt; &#39;string&#39;,
+</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a>&#39;variable&#39; =&gt; &#39;string&#39;,
+</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>&#39;account&#39; =&gt; &#39;string&#39;,
+</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a>&#39;earlymedia&#39; =&gt; &#39;string&#39;,
+</span><span id="__span-35-12"><a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a>&#39;async&#39; =&gt; &#39;string&#39;,
+</span><span id="__span-35-13"><a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a>&#39;codecs&#39; =&gt; &#39;string&#39;,
+</span><span id="__span-35-14"><a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a>&#39;predialgosub&#39; =&gt; &#39;string&#39;
 </span></code></pre></div>
 <h2 id="asterisk-internal-db-astdb-functions">Asterisk internal DB (AstDB) functions<a class="headerlink" href="#asterisk-internal-db-astdb-functions" title="Permanent link">&para;</a></h2>
 <h4 id="get-astamisdbpgetidkey">GET /astamis/DBPGet/{id}/{key}<a class="headerlink" href="#get-astamisdbpgetidkey" title="Permanent link">&para;</a></h4>
@@ -3854,7 +3864,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2024 CoCoKraft.com
+      Copyright &copy; 2024 KoKoKraft.com
     </div>
   
   
