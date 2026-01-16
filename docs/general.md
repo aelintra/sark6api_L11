@@ -672,7 +672,7 @@ update a tenant
 			'ldaphost' => 'string',
 			'ldapou' => 'string',
 			'ldapuser' => 'string',
-			'ldappass' => 'sarkstring',
+			'ldappass' => 'string',
 			'ldaptls' => 'in:on,off',
 			'localarea' => 'numeric|nullable',
 			'localdplan' => [
@@ -816,10 +816,20 @@ originate a new bridge
 **Body:**
 
 ```
-target = 'required|integer';
-caller = 'required|numeric';
-context = 'required|alpha_dash'
-clid = 'required|numeric';
+'channel' => 'required|string',
+'exten' => 'required|string',
+'context' => 'required|string',
+'priority' => 'numeric',
+'application' => 'string',
+'data' => 'string',
+'timeout' => 'numeric',
+'callerid' => 'string',
+'variable' => 'string',
+'account' => 'string',
+'earlymedia' => 'string',
+'async' => 'string',
+'codecs' => 'string',
+'predialgosub' => 'string'
 ```
 
 ##Asterisk internal DB (AstDB) functions
